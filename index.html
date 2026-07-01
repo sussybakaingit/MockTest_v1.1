@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>APPSC Departmental Test - Mock CBT Examination</title>
+  <meta name="description" content="Online Computer Based Test (CBT) for APPSC Departmental Test November 2020 - 141 Paper Code. Practice with 100 MCQ questions in JEE exam format." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- ===== LANDING SCREEN ===== -->
+  <div id="landing-screen" class="screen active">
+    <div class="landing-container">
+      <div class="landing-card">
+        <div class="landing-header">
+          <div class="govt-logo">🏛️</div>
+          <h1>APPSC Departmental Test</h1>
+          <p class="subtitle">Computer Based Test (CBT) — Mock Examination</p>
+          <p class="paper-info">Subject Code: 141 | Paper: November 2020</p>
+        </div>
+        <div class="landing-body">
+          <div class="exam-info-grid">
+            <div class="info-card">
+              <span class="info-icon">📝</span>
+              <span class="info-label">Total Questions</span>
+              <span class="info-value">100</span>
+            </div>
+            <div class="info-card">
+              <span class="info-icon">⏱️</span>
+              <span class="info-label">Duration</span>
+              <span class="info-value" id="landing-duration">120 Min</span>
+            </div>
+            <div class="info-card">
+              <span class="info-icon">✅</span>
+              <span class="info-label">Correct</span>
+              <span class="info-value">+1 Mark</span>
+            </div>
+            <div class="info-card">
+              <span class="info-icon">❌</span>
+              <span class="info-label">Wrong</span>
+              <span class="info-value">0 Marks</span>
+            </div>
+          </div>
+
+          <div class="settings-section">
+            <h3>⚙️ Exam Settings</h3>
+            <div class="setting-row">
+              <label for="candidate-name">Candidate Name</label>
+              <input type="text" id="candidate-name" placeholder="Enter your name" value="Candidate" />
+            </div>
+            <div class="setting-row">
+              <label for="timer-minutes">Timer (minutes)</label>
+              <input type="number" id="timer-minutes" value="120" min="5" max="300" />
+            </div>
+            <div class="setting-row checkbox-row">
+              <label><input type="checkbox" id="randomize-questions" /> Randomize Questions</label>
+              <label><input type="checkbox" id="randomize-options" /> Randomize Options</label>
+            </div>
+          </div>
+
+          <div class="instructions-section">
+            <h3>📋 General Instructions</h3>
+            <ol>
+              <li>The clock will be set at the server. The countdown timer at the top right corner will display remaining time.</li>
+              <li>The Question Palette on the right shows question status using colors.</li>
+              <li>You can click on a question number to navigate directly.</li>
+              <li>Use <kbd>←</kbd> / <kbd>→</kbd> arrow keys for navigation.</li>
+              <li>Click <strong>Save & Next</strong> to save and move to next question.</li>
+              <li>Click <strong>Mark for Review & Next</strong> to mark and move on.</li>
+              <li>Click <strong>Clear Response</strong> to deselect your answer.</li>
+              <li>Use <strong>Submit</strong> only when you are sure. You cannot return after submission.</li>
+            </ol>
+          </div>
+
+          <div class="legend-section">
+            <h3>🎨 Question Status Legend</h3>
+            <div class="legend-grid">
+              <div class="legend-item"><span class="legend-dot not-visited"></span> Not Visited</div>
+              <div class="legend-item"><span class="legend-dot not-answered"></span> Not Answered</div>
+              <div class="legend-item"><span class="legend-dot answered"></span> Answered</div>
+              <div class="legend-item"><span class="legend-dot marked"></span> Marked for Review</div>
+              <div class="legend-item"><span class="legend-dot answered-marked"></span> Answered & Marked</div>
+            </div>
+          </div>
+
+          <button id="start-test-btn" class="btn-primary btn-large" onclick="startTest()">
+            🚀 Start Test
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== EXAM SCREEN ===== -->
+  <div id="exam-screen" class="screen">
+    <!-- Top Header Bar -->
+    <header id="exam-header">
+      <div class="header-left">
+        <div class="exam-title-block">
+          <span class="exam-logo">🏛️</span>
+          <div>
+            <div class="exam-name">APPSC Departmental Test — CBT</div>
+            <div class="exam-sub">Subject Code: 141 | November 2020</div>
+          </div>
+        </div>
+      </div>
+      <div class="header-center">
+        <div class="candidate-info">
+          <span class="candidate-label">Candidate:</span>
+          <span class="candidate-name" id="header-candidate-name">Candidate</span>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="timer-block" id="timer-block">
+          <span class="timer-icon">⏱️</span>
+          <span class="timer-display" id="timer-display">02:00:00</span>
+        </div>
+        <button class="btn-icon" id="dark-mode-toggle" onclick="toggleDarkMode()" title="Toggle Dark Mode">🌙</button>
+        <button class="btn-icon" id="fullscreen-toggle" onclick="toggleFullscreen()" title="Toggle Fullscreen">⛶</button>
+      </div>
+    </header>
+
+    <!-- Subject Tabs -->
+    <div id="subject-bar">
+      <div class="subject-tab active">General Studies</div>
+      <div class="question-counter">
+        Question <span id="current-q-num">1</span> of <span id="total-q-num">100</span>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="exam-body">
+      <!-- Question Panel -->
+      <div id="question-panel">
+        <div id="question-header">
+          <span class="q-number-badge" id="q-badge">Q.1</span>
+          <div class="q-status-tag" id="q-status-tag">Not Visited</div>
+        </div>
+        <div id="question-text"></div>
+        <div id="options-container"></div>
+      </div>
+
+      <!-- Question Palette Sidebar -->
+      <div id="palette-sidebar">
+        <div class="palette-header">
+          <h3>Question Palette</h3>
+          <button class="btn-sm" id="toggle-palette" onclick="togglePalette()">◀</button>
+        </div>
+        <div class="palette-legend">
+          <div class="pl-item"><span class="pl-dot answered"></span><span id="pal-answered">0</span> Answered</div>
+          <div class="pl-item"><span class="pl-dot not-answered"></span><span id="pal-not-answered">0</span> Not Answered</div>
+          <div class="pl-item"><span class="pl-dot marked"></span><span id="pal-marked">0</span> Marked</div>
+          <div class="pl-item"><span class="pl-dot answered-marked"></span><span id="pal-answered-marked">0</span> Ans & Marked</div>
+          <div class="pl-item"><span class="pl-dot not-visited"></span><span id="pal-not-visited">100</span> Not Visited</div>
+        </div>
+        <div id="palette-grid"></div>
+      </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <footer id="exam-footer">
+      <div class="footer-left">
+        <button class="btn-nav btn-clear" onclick="clearResponse()" id="btn-clear">Clear Response</button>
+        <button class="btn-nav btn-mark" onclick="markForReview()" id="btn-mark">Mark for Review & Next</button>
+      </div>
+      <div class="footer-right">
+        <button class="btn-nav btn-prev" onclick="prevQuestion()" id="btn-prev">◀ Previous</button>
+        <button class="btn-nav btn-next" onclick="saveAndNext()" id="btn-next">Save & Next ▶</button>
+        <button class="btn-nav btn-submit" onclick="showSubmitConfirm()" id="btn-submit">Submit Test</button>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ===== SUBMIT CONFIRMATION MODAL ===== -->
+  <div id="submit-modal" class="modal-overlay">
+    <div class="modal-card">
+      <h2>⚠️ Submit Test?</h2>
+      <p>Are you sure you want to submit the test? You cannot change answers after submission.</p>
+      <div class="submit-summary" id="submit-summary"></div>
+      <div class="modal-actions">
+        <button class="btn-nav btn-prev" onclick="closeSubmitModal()">← Go Back</button>
+        <button class="btn-nav btn-submit" onclick="submitTest()">✅ Confirm Submit</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== RESULT SCREEN ===== -->
+  <div id="result-screen" class="screen">
+    <div class="result-container">
+      <!-- Score Card -->
+      <div class="result-header-card" id="result-header-card">
+        <div class="result-title-row">
+          <div class="govt-logo">🏛️</div>
+          <div>
+            <h1>Examination Score Card</h1>
+            <p>APPSC Departmental Test — November 2020 (Code 141)</p>
+          </div>
+        </div>
+        <div class="result-candidate-row" id="result-candidate-row"></div>
+      </div>
+
+      <!-- Score Overview Cards -->
+      <div class="score-overview" id="score-overview"></div>
+
+      <!-- Performance Meter -->
+      <div class="charts-section">
+        <div class="chart-card" id="chart-pie-card">
+          <h3>📊 Answer Distribution</h3>
+          <canvas id="pie-chart" width="280" height="280"></canvas>
+          <div id="pie-legend" class="chart-legend"></div>
+        </div>
+        <div class="chart-card" id="chart-bar-card">
+          <h3>📈 Performance Meter</h3>
+          <canvas id="bar-chart" width="350" height="280"></canvas>
+        </div>
+      </div>
+
+      <!-- Analytics -->
+      <div class="analytics-section" id="analytics-section"></div>
+
+      <!-- Action Buttons -->
+      <div class="result-actions">
+        <button class="btn-primary" onclick="showReviewMode()">📖 Review Answers</button>
+        <button class="btn-primary btn-outline" onclick="printResult()">🖨️ Print Score Card</button>
+        <button class="btn-primary btn-outline" onclick="downloadPDF()">📥 Download PDF</button>
+        <button class="btn-primary btn-outline" onclick="restartTest()">🔄 Retake Test</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== REVIEW SCREEN ===== -->
+  <div id="review-screen" class="screen">
+    <header id="review-header">
+      <div class="header-left">
+        <h2>📖 Answer Review</h2>
+      </div>
+      <div class="header-right">
+        <button class="btn-primary btn-outline" onclick="backToResults()">← Back to Results</button>
+        <button class="btn-icon" id="dark-mode-toggle-review" onclick="toggleDarkMode()" title="Toggle Dark Mode">🌙</button>
+      </div>
+    </header>
+    <div id="review-body"></div>
+  </div>
+
+  <script src="questions.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
