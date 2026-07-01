@@ -64,32 +64,6 @@ An offline-capable, interactive Computer-Based Test (CBT) mock exam interface de
 - **Graphics**: HTML5 Canvas (Zero external libraries for performance & offline reliability)
 - **Typography**: Google Fonts (Inter)
 - **Hosting Compatibility**: 100% static, requires no backend server.
-
----
-
-## 🚀 Deploying to Vercel
-
-This repository is optimized to deploy with one click to Vercel. 
-
-### Method 1: Push to GitHub (Current setup)
-1. Commit all files and push to your GitHub Repository: `https://github.com/sussybakaingit/MockTest_v1.1.git`
-2. Go to [Vercel Dashboard](https://vercel.com).
-3. Click **Add New** > **Project**.
-4. Import this repository.
-5. Vercel will automatically detect the static project framework. Leave build settings default.
-6. Click **Deploy**. Done!
-
-### Method 2: Vercel CLI
-If you have Vercel CLI installed:
-```bash
-vercel
-```
-
----
-
-## 🧑‍💻 Running Locally
-Simply clone the repository and open `index.html` directly in any web browser:
-```bash
 git clone https://github.com/sussybakaingit/MockTest_v1.1.git
 cd MockTest_v1.1
 open index.html
